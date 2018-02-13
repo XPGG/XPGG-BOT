@@ -20,7 +20,7 @@ async def on_message(message):
 
 
         elif message.channel.id in channels:  #チャンネル指定
-						channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
+            channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
             if message.content.startswith("http"):
                 m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ
                 response = await client.send_message(message.channel, m)    #返信場所指定
