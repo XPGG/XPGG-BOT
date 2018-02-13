@@ -14,31 +14,25 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if client.user != message.author:
+    if client.user != message.author:  #他BOT回避
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
-@client.event   #Twitch自動削除
-async def on_message(message):
-    if not message.author.bot:  #他BOT回避
-        channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
-        if message.channel.id in channels:  #チャンネル指定
-                if message.content.startswith("http"):
-                    m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ
-                    response = await client.send_message(message.channel, m)    #返信場所指定
-                    await asyncio.sleep(3600) #非同期処理
-                    await client.delete_messages([message, response])
+    channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
+        elif message.channel.id in channels:  #チャンネル指定
+            if message.content.startswith("http"):
+                m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ
+                response = await client.send_message(message.channel, m)    #返信場所指定
+                await asyncio.sleep(3600) #非同期処理
+                await client.delete_messages([message, response])
 
-@client.event
-async def on_message(message):
-    if not message.author.bot:
-        channels = [
+    channels = [
                 "412592142851112960",#bot_practice
                 "397794862755348480",#PUBG
                 "393334968488820739",#mc_chatroom
                 "397790090006364170",#monster hunter
         ]
-        if message.channel.id in channels:
+    elif message.channel.id in channels:
             if message.content.startswith("!register"):
                 team_dict = {
                         "pubg":"PUBG",
