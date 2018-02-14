@@ -27,11 +27,14 @@ async def on_message(message):
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
+        elif message.content.startswith("!flac"):
+            await client.send_message(message.channel, ":thinking_face:")
+
 #Twitch自動削除
 
         elif message.channel.id in channels:  #チャンネル指定
             if message.content.startswith("http"):
-                m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ
+                m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ関数
                 response = await client.send_message(message.channel, m)    #返信場所指定
                 await asyncio.sleep(3600) #非同期処理
                 await client.delete_messages([message, response])
@@ -60,8 +63,5 @@ async def on_message(message):
                     else:
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
 
-        elif message.content.startswith("flac"):
-            m = "人でなし"
-            await client.send_message(message)
 
 client.run(settings.token)
