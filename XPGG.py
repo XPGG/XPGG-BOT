@@ -60,5 +60,8 @@ async def on_message(message):
                     else:
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
 
+        elif message.content.startswith("flac"):
+            m = "人でなし"
+            await client.send_message(message)
 
 client.run(settings.token)
