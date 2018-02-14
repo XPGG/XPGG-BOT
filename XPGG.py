@@ -33,7 +33,7 @@ async def on_message(message):
 #Twitch自動削除
 
         elif message.channel.id in channels:  #チャンネル指定
-            if message.content.startswith("http"):
+            if "http" in message.content:   #もしメッセージの中に”http”が入ってたら
                 m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  #BOT送信メッセージ関数
                 response = await client.send_message(message.channel, m)    #返信場所指定
                 await asyncio.sleep(3600) #非同期処理
