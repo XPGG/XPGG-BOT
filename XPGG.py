@@ -26,9 +26,6 @@ async def on_message(message):
         ]
         if message.content.startswith("test0"):
             await client.delete_message(message)
-        else:
-            pass
-
         elif message.content.startswith("!flac"):
             await client.send_message(message.channel, ":thinking_face:")
         else:
@@ -69,5 +66,7 @@ async def on_message(message):
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
                 else:
                     pass
+        else:
+            pass
 
 client.run(settings.token)
