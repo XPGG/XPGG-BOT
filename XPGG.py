@@ -27,10 +27,9 @@ async def on_message(message):
         ]
         if message.content.startswith("test0"):
             await client.delete_message(message)
+
         elif message.content.startswith("!flac"):
             await client.send_message(message.channel, ":thinking_face:")
-        else:
-            pass
 
 #Twitch自動削除
 
