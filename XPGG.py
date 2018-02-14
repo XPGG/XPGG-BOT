@@ -26,9 +26,13 @@ async def on_message(message):
         ]
         if message.content.startswith("test0"):
             await client.delete_message(message)
+        else:
+            pass
 
         elif message.content.startswith("!flac"):
             await client.send_message(message.channel, ":thinking_face:")
+        else:
+            pass
 
 #Twitch自動削除
 
@@ -38,7 +42,8 @@ async def on_message(message):
                 response = await client.send_message(message.channel, m)    #返信場所指定
                 await asyncio.sleep(3600) #非同期処理
                 await client.delete_messages([message, response])
-
+            else:
+                pass
 
 #役職付与
         elif message.channel.id in Xchannels:
@@ -62,6 +67,7 @@ async def on_message(message):
                         await client.send_message(message.channel, "<@%s> が **{0}**のメンバーになりました！" .format(role.name) % (message.author.id))
                     else:
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
-
+                else:
+                    pass
 
 client.run(settings.token)
