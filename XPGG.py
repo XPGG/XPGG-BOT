@@ -3,6 +3,7 @@
 import discord
 import asyncio
 import settings
+import random
 
 client = discord.Client()
 
@@ -28,6 +29,7 @@ async def on_message(message):
                     "393334968488820739",   # mc_chatroom
                     "397790090006364170",   # monster hunter
         ]
+        pubg_channels = ["412592142851112960", "397794862755348480"]
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
@@ -70,6 +72,19 @@ async def on_message(message):
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
                 else:
                     pass
+        elif message.channel.id in pubg_channels:
+                Island_list = [
+                                "Pochinki",
+                                "Militery Base",
+                                "School",
+                                "Mansion",
+                                "Rozhok",
+                                "Yasnaya Polynaya",
+                                "Georgopol",
+                                "Prison"
+                ]
+                if message.content.startswith("!pubg start"):
+                    await client.send_message(message.channel, random.choice(Island_list))
         else:
             pass
 
