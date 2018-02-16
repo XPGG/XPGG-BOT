@@ -33,7 +33,8 @@ async def on_message(message):
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
-        elif message.content.startswith("!pubg start"):
+        elif message.content.startswith("!pubg "):
+                entered_map = ["Is", "de"]
                 Island_list = [
                                 "Pochinki",
                                 "Militery Base",
@@ -45,7 +46,9 @@ async def on_message(message):
                                 "Prison",
                                 "hospital",
                 ]
-                await client.send_message(message.channel, "おすすめの降下地点は " + "**__" + random.choice(Island_list) + "__**")
+                entered_select = message.content[6:]
+                if entered_select == entered_map[0]:
+                    await client.send_message(message.channel, "おすすめの降下地点は " + "**__" + str(random.choice(Island_list)) + "__** MAP:Island")
         # Twitch自動削除
 
         elif message.channel.id in channels:    # チャンネル指定
