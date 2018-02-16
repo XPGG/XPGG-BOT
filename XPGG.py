@@ -1,4 +1,4 @@
-# dev1111aaa11111111
+# dev1.1.1 2回目のチャンネル指定ができません。よって、!pubg_startコマンドが使えません。
 # coding: utf-8
 import discord
 import asyncio
@@ -29,13 +29,23 @@ async def on_message(message):
                     "393334968488820739",   # mc_chatroom
                     "397790090006364170",   # monster hunter
         ]
-        pubg_channels = ["412592142851112960", "397794862755348480"]
+        # pubg_channels = ["412592142851112960", "397794862755348480"]
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
-        elif message.content.startswith("!flac"):
-            await client.send_message(message.channel, ":thinking_face:")
-
+        elif message.content.startswith("!pubg start"):
+                Island_list = [
+                                "Pochinki",
+                                "Militery Base",
+                                "School",
+                                "Mansion",
+                                "Rozhok",
+                                "Yasnaya Polynaya",
+                                "Georgopol",
+                                "Prison",
+                                "hospital",
+                ]
+                await client.send_message(message.channel, "おすすめの降下地点は " + "**__" + random.choice(Island_list) + "__**")
         # Twitch自動削除
 
         elif message.channel.id in channels:    # チャンネル指定
@@ -72,19 +82,7 @@ async def on_message(message):
                         await client.send_message(message.channel, "役職名が間違っているか、その役職はこの処理では付与できません。")
                 else:
                     pass
-        elif message.channel.id in pubg_channels:
-                Island_list = [
-                                "Pochinki",
-                                "Militery Base",
-                                "School",
-                                "Mansion",
-                                "Rozhok",
-                                "Yasnaya Polynaya",
-                                "Georgopol",
-                                "Prison"
-                ]
-                if message.content.startswith("!pubg start"):
-                    await client.send_message(message.channel, random.choice(Island_list))
+
         else:
             pass
 
