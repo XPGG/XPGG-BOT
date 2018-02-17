@@ -1,4 +1,4 @@
-# dev1.1.1 2回目のチャンネル指定ができません。よって、!pubg_startコマンドが使えません。
+# dev1.1.2 チャンネルの指定が競合して他のコマンドが入力できないバグを修正
 # coding: utf-8
 import discord
 import asyncio
