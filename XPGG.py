@@ -22,18 +22,19 @@ async def on_message(message):
     # test0
 
     if not message.author.bot:  # 他BOT回避
+        bot_practice = ["41259214285112960"]
         channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
         Xchannels = [
-                    "412592142851112960",   # bot_practice
                     "397794862755348480",   # PUBG
                     "393334968488820739",   # mc_chatroom
                     "397790090006364170",   # monster hunter
         ]
-        # pubg_channels = ["412592142851112960", "397794862755348480"]
+        pubg_channels = ["397794862755348480"]
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
         elif message.content.startswith("!pubg "):
+            if message.channel.id in pubg_channels or bot_practice:
                 entered_map = ["Is", "de"]
                 Island_list = [
                                 "Pochinki",
@@ -43,16 +44,15 @@ async def on_message(message):
                                 "Rozhok",
                                 "Yasnaya Polynaya",
                                 "Georgopol",
-                                "Prison",
-                                "hospital",
+                                "Prison or Hospital",
                 ]
                 entered_select = message.content[6:]
                 if entered_select == entered_map[0]:
                     await client.send_message(message.channel, "おすすめの降下地点は " + "**__" + str(random.choice(Island_list)) + "__** MAP:Island")
         # Twitch自動削除
 
-        elif message.channel.id in channels:    # チャンネル指定
-            if "http" in message.content:   # もしメッセージの中に”http”が入ってたら
+        elif "http" in message.content:   # チャンネル指定
+            if message.channel.id in channels or bot_practice:   # もしメッセージの中に”http”が入ってたら
                 m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  # BOT送信メッセージ関数
                 response = await client.send_message(message.channel, m)    # 返信場所指定
                 await asyncio.sleep(3600)   # 非同期処理
@@ -62,8 +62,8 @@ async def on_message(message):
 
         # 役職付与
 
-        elif message.channel.id in Xchannels:
-                if message.content.startswith("!register"):
+        elif message.content.startswith("!register"):
+                if message.channel.id in Xchannels or bot_practice:
                     team_dict = {
                             "pubg": "PUBG",
                             "minecraft": "私立XP女学院マイクラ部",
