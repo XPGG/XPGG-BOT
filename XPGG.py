@@ -1,4 +1,4 @@
-# dev1.1.2
+# 完全動作版1.1.2
 # coding: utf-8
 import discord
 import asyncio
