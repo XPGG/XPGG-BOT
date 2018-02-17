@@ -60,11 +60,10 @@ async def on_message(message):
                 entered_select = message.content[7:]
                 if entered_select == entered_map[0]:
                     await client.send_message(message.channel, "おすすめの降下地点は " + "**__" + str(random.choice(Island_list)) + "__** MAP:Island")
-
                 elif entered_select == entered_map[1]:
                     await  client.send_message(message.channel, "おすすめの降下地点は " + "**__" + str(random.choice(desert_list)) + "__** MAP:Desert")
                 else:
-                    client.send_message(message.channel, "島MAP＝`Is` 砂漠MAP＝`De` ")
+                    await client.send_message(message.channel, "島MAP＝`Is` 砂漠MAP＝`De` ")
         # Twitch自動削除
         elif "http" in message.content:
             if message.channel.name in stream_channels:
