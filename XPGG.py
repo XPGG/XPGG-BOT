@@ -1,4 +1,4 @@
-# 完全動作版 v1.1.3 チャンネル競合問題解決
+# 完全動作版1.1.3 チャンネル競合問題解決
 # coding: utf-8
 import discord
 import asyncio
