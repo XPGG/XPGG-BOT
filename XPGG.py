@@ -22,8 +22,8 @@ async def on_message(message):
     if not message.author.bot:  # 他BOT回避
 
         # チャンネルリスト
-        bot_practice = ["412592142851112960"]
-        channels = ["398447971018211329", "394434155443650560", "398446399005655051"]
+        bot_practice = ["412592142851112960"]  # bot_practiceチャンネル
+        stream_channels = ["398447971018211329", "394434155443650560", "398446399005655051"]  # 配信チャンネルリスト
         Xchannels = [
                     "397794862755348480",   # PUBG
                     "393334968488820739",   # mc_chatroom
@@ -56,7 +56,7 @@ async def on_message(message):
 
         # Twitch自動削除
         elif "http" in message.content:
-            if message.channel.id in channels or bot_practice:
+            if message.channel.id in stream_channels or bot_practice:
                 m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  # BOT送信メッセージ関数
                 response = await client.send_message(message.channel, m)    # 返信場所指定
                 await asyncio.sleep(3600)   # 非同期処理
