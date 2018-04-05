@@ -4,7 +4,7 @@ import discord
 import asyncio
 import settings
 import random
-
+import chu_toro
 client = discord.Client()
 
 
@@ -23,22 +23,29 @@ async def on_message(message):
 
         # チャンネルリスト
         # bot_practice = ["bot-practice"]  # bot_practiceチャンネル
-        stream_channels = ["stream_now", "pc_stream_now", "ps4pc_stream_now", "bot-practice"]  # 配信チャンネルリスト
+        stream_channels = ["394434155443650560", "398447971018211329", "398446399005655051", "412592142851112960", "423417052267544576"]  # 配信チャンネルリスト
         Xchannels = [
-                    "pubg",   # PUBG
-                    "minecraft_chatroom",   # mc_chatroom
-                    "monster_hunter_xp_chat",    # monster hunter
-                    "bot-practice"
+                    "397794862755348480",   # PUBG
+                    "393334968488820739",   # mc_chatroom
+                    "397790090006364170",    # monster hunter
+                    "412592142851112960",
+                    "412899236502568981",
+                    "397793681576558592"    # OW
         ]
-        pubg_channel = ["pubg", "bot-practice"]
+        pubg_channel = ["397794862755348480", "412592142851112960"]
 
         # test_0
         if message.content.startswith("test0"):
             await client.delete_message(message)
 
+        elif message.content.startswith("!!meow "):
+            server_name = message.content[7:]
+            server_info = "<@%s> %s" % (message.author.id, chu_toro.get_server_info(server_name))
+            await client.send_message(message.channel, server_info)
+
         # PUBG スタート地点候補コマンド
         elif message.content.startswith("!start "):
-            if message.channel.name in pubg_channel:
+            if message.channel.id in pubg_channel:
                 entered_map = ["Is", "De"]
                 Island_list = [
                                 "Pochinki",
@@ -66,24 +73,27 @@ async def on_message(message):
                     await client.send_message(message.channel, "島MAP＝`Is` 砂漠MAP＝`De` ")
         # Twitch自動削除
         elif "http" in message.content:
-            if message.channel.name in stream_channels:
-                m = "**Good luck!** \n配信の書き込みは__１時間後__に自動削除されます。"  # BOT送信メッセージ関数
+            if message.channel.id in stream_channels:
+                m = "**Good luck!** \n配信の書き込みは__２時間後__に自動削除されます。"  # BOT送信メッセージ関数
                 response = await client.send_message(message.channel, m)    # 返信場所指定
-                await asyncio.sleep(3600)   # 非同期処理
+                await asyncio.sleep(7200)   # 非同期処理
                 await client.delete_messages([message, response])
             else:
                 pass
 
         # 役職付与
         elif message.content.startswith("!register"):  # 文頭が←だったら
-            if message.channel.name in Xchannels:  # 左のチャンネルリスト内だったら
+            if message.channel.id in Xchannels:  # 左のチャンネルリスト内だったら
                 team_dict = {
+                        "fps": "FPS_shooter",
                         "pubg": "PUBG",
                         "minecraft": "私立XP女学院マイクラ部",
                         "mc": "私立XP女学院マイクラ部",
                         "hunter": "hunter",
                         "HUNTER": "hunter",
-                        "ハンター": "hunter"
+                        "ハンター": "hunter",
+                        "ow": "OW",
+                        "Overwatch": "OW"
                 }
                 entered_team = message.content[10:].lower()
                 if entered_team in team_dict:
